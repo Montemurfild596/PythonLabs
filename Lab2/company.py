@@ -28,3 +28,24 @@ class Company:
             dict["employees"] = [i.__dict__ for i in company.employees]
             dict["clients"] = [i.__dict__ for i in company.clients]
             json.dump(dict, outfile, indent = 4, ensure_ascii = False)
+    
+    def DeserializeCompany(path):
+        def Deserialize(dict):        
+            for i in Company().__dict__.keys():
+                if not i in dict:   
+                    break
+            else:
+                return Company(dict["name"], [Deserialize(i) for i in dict["employees"]], [Deserialize(i) for i in dict["clients"]])
+            for i in employee.Employee().__dict__.keys():
+                if not i in dict:   
+                    break
+            else:
+                return employee.Employee(dict["surname"], dict["name"], dict["patronymic"], dict["age"], dict["salary"])
+            for i in client.Client().__dict__.keys():
+                if not i in dict:  
+                    break
+            else:
+                return client.Client(dict["surname"], dict["name"], dict["patronymic"], dict["age"], dict["order"])
+        with open(path, 'r') as infile:
+            data = json.load(infile)
+            return Deserialize(data)
