@@ -2,7 +2,7 @@ from pyDatalog import pyDatalog
 import random
 
 """
-
+4 задание: нахождение медианы 100 случайных чисел
 """
 
 pyDatalog.create_terms('median, summa_random_numbers, X')
