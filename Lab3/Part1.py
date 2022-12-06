@@ -5,6 +5,6 @@ from pyDatalog import pyDatalog
 """
 
 pyDatalog.create_terms('result, X')
-result[X] = X + result[X - 1]
+result[X] = (result[1] + X) * (X / 2)
 result[1] = 1
-print(result[100] == X)
+print(result[9999999] == X)
