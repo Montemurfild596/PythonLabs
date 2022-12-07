@@ -22,12 +22,12 @@ def generate_data_set(names, surnames, patronymics, cities):
 		n_s_p = surnames[random.randint(0, len(surnames) - 1)] + " " + names[random.randint(0, len(names) - 1)] + " " + patronymics[random.randint(0, len(patronymics) - 1)]
 		city = cities[random.randint(0, len(cities) - 1)]
 		salary = random.randint(10000, 1000000)
-		persons.append(n_s_p, city, salary)
+		persons.append([n_s_p, city, salary])
 	return persons
 
 def write_CSV_from_list(source_dataset, file_name):
 	with open(file_name, "w", newline="") as file:
-		writer = csv.DictWriter(file, delimiter=',')
+		writer = csv.writer(file, delimiter=',')
 		writer.writerows(source_dataset)
 
 def write_CSV_from_dict(source_dataset, file_name):
@@ -45,7 +45,7 @@ def read_csv(file_name):
 			result.append(i)
 	return result
 
-def split nsp(source_dict):
+def split_nsp(source_dict):
 	result = dict()
 	strs = source_dict["ФИО"].split(' ')
 	result["Фамилия"] = strs[0]
@@ -63,7 +63,20 @@ def mode(x):
 		max_count = most_common[0][1]
 		return [x for x, count in takewhile(lambda x: x[1]==max_count, most_common)]
 
-
 def get_most_city(source_dict_1):
-	print("Самый часто встречающийся город: " + mode(source_dict_1["Зарплата"]))
+	print("Самый часто встречающийся город: " + mode(source_dict_1))
 
+def get_sum(dict_1, dict_2):
+	result = dict()
+	result["Зарплата"] = int(dict_2["Зарплата"]) + int(dict_1["Зарплата"])
+	return result
+
+names = ["Савелий", "Павел", "Максим", "Степан", "Григорий", "Роман", "Олег"]
+surnames = ["Зубенко", "Михайлов", "Собутыльников", "Васильев", "Апрельский", "Научнов", "Заметкин"]
+patronymics = ["Васильевич", "Степанович", "Олегович", "Петрович", "Анатольевич", "Фёдорович", "Викторович"]
+cities = ["Пермь", "Краснокамск", "Березники", "Екатеринбург", "Кунгур", "Нытва", "Сылва"]
+write_CSV_from_list(generate_data_set(names, surnames, patronymics, cities), "csv_file1.py")
+dataset1 = read_csv("csv_file1.py")
+dataset2 = my_map(split_nsp, dataset1)
+write_CSV_from_dict(dataset2, "csv_file2.py")
+print("Сумма всех зарплат: " + str(my_reduce(get_sum, dataset1)["Зарплата"]))
