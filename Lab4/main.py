@@ -28,3 +28,10 @@ def write_CSV_from_list(source_dataset, file_name):
 		writer = csv.DictWriter(file, delimiter=',')
 		writer.writerows(source_dataset)
 
+def write_CSV_from_dict(source_dataset, file_name):
+	with open(file_name, "w", newline="") as file:
+		cols = list(source_dataset[0].keys())
+		writer = csv.DictWriter(file, fieldnames=cols, delimiter=',')
+		writer.writeheader()
+		writer.writerows(source_dataset)
+
