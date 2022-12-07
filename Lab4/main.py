@@ -35,3 +35,11 @@ def write_CSV_from_dict(source_dataset, file_name):
 		writer.writeheader()
 		writer.writerows(source_dataset)
 
+def read_csv(file_name):
+	with open(file_name, "r", newline="") as file:
+		reader = csv.DictReader(file)
+		result = list()
+		for i in reader:
+			result.append(i)
+	return result
+
