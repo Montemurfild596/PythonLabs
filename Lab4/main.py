@@ -22,3 +22,9 @@ def generate_data_set(names, surnames, patronymics, cities):
 		salary = random.randint(10000, 1000000)
 		persons.append(n_s_p, city, salary)
 	return persons
+
+def write_CSV_from_list(source_dataset, file_name):
+	with open(file_name, "w", newline="") as file:
+		writer = csv.DictWriter(file, delimiter=',')
+		writer.writerows(source_dataset)
+
