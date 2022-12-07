@@ -1,7 +1,7 @@
 from pyDatalog import pyDatalog
 
 """
-1 Задание: посчитать сумму ряда от 1 до 100
+1 Задание: посчитать сумму ряда от 0 до 9999999
 """
 
 pyDatalog.create_terms('result, X')
