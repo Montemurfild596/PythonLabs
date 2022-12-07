@@ -1,5 +1,7 @@
 import csv
 import random
+from collections import Counter
+from itertools import takewhile
 
 def my_map(function, source_list):
 	new_list = []
@@ -42,4 +44,26 @@ def read_csv(file_name):
 		for i in reader:
 			result.append(i)
 	return result
+
+def split nsp(source_dict):
+	result = dict()
+	strs = source_dict["ФИО"].split(' ')
+	result["Фамилия"] = strs[0]
+	result["Имя"] = strs[1]
+	result["Отчество"] = strs[2]
+	result["Место жительства"] = source_dict["Место жительства"]
+	result["Зарплата"] = source_dict["Зарплата"]
+	return result
+
+def mode(x):
+	most_common = Counter(x).most_common()
+	if not most_common:
+		return []
+	else:
+		max_count = most_common[0][1]
+		return [x for x, count in takewhile(lambda x: x[1]==max_count, most_common)]
+
+
+def get_most_city(source_dict_1):
+	print("Самый часто встречающийся город: " + mode(source_dict_1["Зарплата"]))
 
