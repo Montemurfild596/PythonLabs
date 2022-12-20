@@ -75,8 +75,8 @@ names = ["Савелий", "Павел", "Максим", "Степан", "Гри
 surnames = ["Зубенко", "Михайлов", "Собутыльников", "Васильев", "Апрельский", "Научнов", "Заметкин"]
 patronymics = ["Васильевич", "Степанович", "Олегович", "Петрович", "Анатольевич", "Фёдорович", "Викторович"]
 cities = ["Пермь", "Краснокамск", "Березники", "Екатеринбург", "Кунгур", "Нытва", "Сылва"]
-write_CSV_from_list(generate_data_set(names, surnames, patronymics, cities), "csv_file1.py")
-dataset1 = read_csv("csv_file1.py")
+write_CSV_from_list(generate_data_set(names, surnames, patronymics, cities), "csv_file1.csv")
+dataset1 = read_csv("csv_file1.csv")
 dataset2 = my_map(split_nsp, dataset1)
-write_CSV_from_dict(dataset2, "csv_file2.py")
+write_CSV_from_dict(dataset2, "csv_file2.csv")
 print("Сумма всех зарплат: " + str(my_reduce(get_sum, dataset1)["Зарплата"]))
