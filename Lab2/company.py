@@ -21,3 +21,10 @@ class Company:
 
     def __repr__(self):
         return self.__str__()
+
+    def SerializeCompany(company, path):    
+        with open(path, 'w') as outfile:
+            dict = copy.deepcopy(company.__dict__)
+            dict["employees"] = [i.__dict__ for i in company.employees]
+            dict["clients"] = [i.__dict__ for i in company.clients]
+            json.dump(dict, outfile, indent = 4, ensure_ascii = False)
