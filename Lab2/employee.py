@@ -4,8 +4,8 @@ class Employee(person.Person):
         super().__init__(surname, name, patronymic, age);
         self.salary = salary;
 
-    def  __str__(self) -> str:
+    def  __str__(self):
         return super().__str__() + f"\tДоход: {self.salary}";
 
-    def __repr__(self)-> str:
+    def __repr__(self):
         return "Employee: " + self.__str__();
