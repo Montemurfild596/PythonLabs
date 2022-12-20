@@ -8,4 +8,5 @@ class Person:
 	def __str__(self):
 		return f"ФИО: {self.surname} {self.name} {self.patronymic}\tвозраст: {self.age}"
 
-	
+	def __repr__(self):
+		return "Person: " + self.__str__()
