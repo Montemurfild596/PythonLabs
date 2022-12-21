@@ -1,0 +1,35 @@
+{
+    "name": "Магазин \"Шо та у Ашота\"",
+    "employees": [
+        {
+            "surname": "Омутных",
+            "name": "Олег",
+            "patronymic": "Евгеньевич",
+            "age": 19,
+            "salary": 355000
+        },
+        {
+            "surname": "Зубенко",
+            "name": "Михаил",
+            "patronymic": "Петрович",
+            "age": 34,
+            "salary": 42000
+        }
+    ],
+    "clients": [
+        {
+            "surname": "Собутыльников",
+            "name": "Иван",
+            "patronymic": "Иванович",
+            "age": 40,
+            "order": "Ноутбук Asus 69.420"
+        },
+        {
+            "surname": "Светов",
+            "name": "Михаил",
+            "patronymic": "-",
+            "age": 33,
+            "order": "Ребёнок"
+        }
+    ]
+}

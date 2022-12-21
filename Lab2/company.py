@@ -3,9 +3,9 @@ import employee
 import client
 import json
 import copy
-#Компания
+
 class Company:
-    def __init__(self, nam = "NOVALUE", employees = [], clients = []):
+    def __init__(self, name = "NOVALUE", employees = [], clients = []):
         self.name = name    
         self.employees = employees
         self.clients = clients       
@@ -22,30 +22,30 @@ class Company:
     def __repr__(self):
         return self.__str__()
 
-    def SerializeCompany(company, path):    
-        with open(path, 'w') as outfile:
-            dict = copy.deepcopy(company.__dict__)
-            dict["employees"] = [i.__dict__ for i in company.employees]
-            dict["clients"] = [i.__dict__ for i in company.clients]
-            json.dump(dict, outfile, indent = 4, ensure_ascii = False)
+def SerializeCompany(company, path):    
+    with open(path, 'w') as outfile:
+        dict = copy.deepcopy(company.__dict__)
+        dict["employees"] = [i.__dict__ for i in company.employees]
+        dict["clients"] = [i.__dict__ for i in company.clients] 
+        json.dump(dict, outfile, indent = 4, ensure_ascii = False)
     
-    def DeserializeCompany(path):
-        def Deserialize(dict):        
-            for i in Company().__dict__.keys():
-                if not i in dict:   
-                    break
-            else:
-                return Company(dict["name"], [Deserialize(i) for i in dict["employees"]], [Deserialize(i) for i in dict["clients"]])
-            for i in employee.Employee().__dict__.keys():
-                if not i in dict:   
-                    break
-            else:
-                return employee.Employee(dict["surname"], dict["name"], dict["patronymic"], dict["age"], dict["salary"])
-            for i in client.Client().__dict__.keys():
-                if not i in dict:  
-                    break
-            else:
-                return client.Client(dict["surname"], dict["name"], dict["patronymic"], dict["age"], dict["order"])
-        with open(path, 'r') as infile:
-            data = json.load(infile)
-            return Deserialize(data)
+def DeserializeCompany(path):
+    def Deserialize(dict):        
+        for i in Company().__dict__.keys():
+            if not i in dict:   
+                break
+        else:
+            return Company(dict["name"], [Deserialize(i) for i in dict["employees"]], [Deserialize(i) for i in dict["clients"]])
+        for i in employee.Employee().__dict__.keys():
+            if not i in dict:   
+                break
+        else:
+            return employee.Employee(dict["surname"], dict["name"], dict["patronymic"], dict["age"], dict["salary"])
+        for i in client.Client().__dict__.keys():
+            if not i in dict:  
+                break
+        else:
+            return client.Client(dict["surname"], dict["name"], dict["patronymic"], dict["age"], dict["order"])
+    with open(path, 'r') as infile:
+        data = json.load(infile)
+        return Deserialize(data)
