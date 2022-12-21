@@ -1,4 +1,4 @@
-import person
+﻿import person
 class Client(person.Person):
     def __init__(self, surname = "NOVALUE", name = "NOVALUE", patronymic = "NOVALUE", age = 0, order= "NOVALUE"):
         super().__init__(surname, name, patronymic, age)
